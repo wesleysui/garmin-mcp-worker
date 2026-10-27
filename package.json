@@ -1,0 +1,39 @@
+{
+  "name": "garmin-mcp-worker",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Read-only remote MCP server for your own Garmin data, on Garmin's official Personal API, deployed to Cloudflare Workers with OAuth.",
+  "license": "MIT",
+  "type": "module",
+  "keywords": ["mcp", "model-context-protocol", "garmin", "garmin-connect", "cloudflare-workers", "claude", "hrv", "running"],
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@cloudflare/workers-oauth-provider": "^1.2.4"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "latest",
+    "typescript": "^5.9.0",
+    "wrangler": "^4.45.0"
+  },
+  "cloudflare": {
+    "bindings": {
+      "GARMIN_API_KEY": {
+        "description": "Your Garmin **Personal API** key. Create one in [Garmin Connect → Settings → Personal API](https://connect.garmin.com/app/settings/personalApiToken); it is shown only once."
+      },
+      "LOGIN_PASSWORD": {
+        "description": "A long password of your choice. You type it on this Worker's sign-in page when connecting Claude, so only you can authorize access."
+      },
+      "TIMEZONE": {
+        "description": "IANA time zone for \"today\", e.g. `Europe/London` or `Africa/Johannesburg`."
+      },
+      "OAUTH_KV": {
+        "description": "Stores OAuth grants (hashed) and the cached Garmin token. Created automatically."
+      }
+    }
+  }
+}

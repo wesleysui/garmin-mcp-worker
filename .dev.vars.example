@@ -1,0 +1,2 @@
+GARMIN_API_KEY=your-garmin-personal-api-key # Garmin Connect → Settings → Personal API → Create Key
+LOGIN_PASSWORD=choose-a-long-password # typed on the sign-in page when you connect Claude
